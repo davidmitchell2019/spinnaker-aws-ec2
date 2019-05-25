@@ -1,0 +1,12 @@
+hal config artifact github enable
+
+# This will prompt for the token
+hal config artifact github account add github-for-terraform --token
+
+hal armory terraform enable --alpha
+
+# This will prompt for the token
+hal armory terraform edit \
+  --alpha \
+  --git-enabled \
+  --git-access-token
