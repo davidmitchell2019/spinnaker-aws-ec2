@@ -10,3 +10,45 @@ hal armory terraform edit \
   --alpha \
   --git-enabled \
   --git-access-token
+  
+  
+  create the file
+  
+  .hal/default/profiles/terraformer-local.yml
+  
+  and set
+  
+  terraform:
+  executablePath: /terraform/versions/0.11.11(which ever version)/terraform
+
+
+  hal deploy apply
+  
+ pipeline steps
+ 
+ 
+ 
+  {
+  "action": "plan",
+  "artifacts": [
+    {
+      "reference": "https://github.com/myorg/my-terraform-repo",
+      "type": "git/repo"
+    },
+    {
+    "artifactAccount": "github-for-terraform",
+    "reference": "https://api.github.com/repos/myorg/my-terraform-repo/contents/terraform/environments/varfile.tfvars",
+    "type": "github/file"
+    }
+  ],
+  "backendArtifact": {
+    "artifactAccount": "github-for-terraform",
+    "reference": "https://api.github.com/repos/myorg/my-terraform-repo/contents/backend.tf",
+    "type": "github/file"
+  },
+  "overrides": {
+    "environment_name": "${parameters.environment_name}"
+  },
+  "dir": "/",
+  "type": "terraform"
+}
