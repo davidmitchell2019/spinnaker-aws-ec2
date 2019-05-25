@@ -1,0 +1,1 @@
+ssh -L 9000:localhost:9000 -L 8084:localhost:8084 -L 8087:localhost:8087 -i "spinnaker.pem" ubuntu@3.8.170.180
