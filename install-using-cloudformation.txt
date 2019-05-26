@@ -1,0 +1,30 @@
+https://aws.amazon.com/quickstart/architecture/spinnaker/
+Need to update ami id's and region for default ami if installing in eu-west-2
+
+After install
+delete bastion host: will update the template at some point
+change security group to allow access to spinnaker host
+
+connect to the instance and port forward to local machine
+
+ssh -L 9000:localhost:9000 -L 8084:localhost:8084 -L 8087:localhost:8087 -i "spinnaker.pem" ubuntu@52.56.185.47
+
+install halyard and setup s3 persistent store
+edit config in two places to enable aws default profile
+
+spinnaker configurations:
+/opt/spinnaker/config
+
+hal configurations
+~/.hal/config
+
+sudo hal deploy apply
+
+credentials files are at:
+/home/spinnaker/
+
+aws credentials files are at:
+/home/spinnaker/.aws
+
+
+
